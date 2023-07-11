@@ -1,12 +1,13 @@
 import streamlit as st
+import matplotlib.pyplot as plt
+import pandas as pd
 from database import query
 
-st.title('Adventure work')
+ca_years = query.getCAPerYear() 
 
-st.text('Nombre d\'employer aux Ressource humaine enregistrer: ' 
-        + str(query.humanRessourceEmployeeCount()))
+fig, ax = plt.subplots()
+ax.bar(ca_years[0], ca_years[1])
 
-st.text('Nombre d\'employer de personnes enregistrer: ' 
-        + str(query.PersonCount()))
-
-print( [t[0] for t in query.jobList()] )
+ax.set_title('Chiffre d\'affaire par années')
+ax.ticklabel_format(style='plain', axis="y")
+st.pyplot(fig)

@@ -1,8 +1,8 @@
 import pyodbc 
-import pandas 
+import pandas as pd
 
 server = 'localhost'
-database = 'TestAdventureWorks' 
+database = 'AdventureWorksDW' 
 username = 'sa' 
 password = 'system#root' 
 
@@ -28,26 +28,57 @@ def executeSelect(sql):
     return cursor.fetchall()
 
 class query:
-    def humanRessourceEmployeeCount(gender="*"):
-        queryWhere = ""
+    # def humanRessourceEmployeeCount(gender="*"):
+    #     queryWhere = ""
 
-        if(gender == "male" or gender == "m"):
-            queryWhere = "WHERE Gender IN ('M')"
-        elif (gender == "female" or gender == "f"):
-            queryWhere = "WHERE Gender IN ('F')"
+    #     if(gender == "male" or gender == "m"):
+    #         queryWhere = "WHERE Gender IN ('M')"
+    #     elif (gender == "female" or gender == "f"):
+    #         queryWhere = "WHERE Gender IN ('F')"
 
-        return executeSelect('SELECT COUNT(*) FROM humanresources.employee ' + queryWhere)[0][0]
+    #     return executeSelect('SELECT COUNT(*) FROM humanresources.employee ' + queryWhere)[0][0]
     
-    def PersonCount():
-        return executeSelect('SELECT COUNT(*) FROM person.person ')[0][0]
+    # def PersonCount():
+    #     return executeSelect('SELECT COUNT(*) FROM person.person ')[0][0]
     
-    def jobList():
-        return executeSelect('''
+    # def jobList():
+        # return executeSelect('''
+        #     SELECT
+        #         DISTINCT jobtitle
+        #     FROM
+        #         humanresources.employee
+        #     ORDER BY
+        #         jobtitle;
+        # ''')
+
+    def getCAPerYear():
+        result = executeSelect(''' 
             SELECT
-                DISTINCT jobtitle
+                SUM(UnitPrice) AS Sales,
+                YEAR(OrderDate) as YearOfSale
             FROM
-                humanresources.employee
-            ORDER BY
-                jobtitle;
+                FactInternetSales
+            GROUP BY
+                YEAR(OrderDate)
+            ORDER by
+                YearOfSale
         ''')
+        
+        normalized = [[item[1], float(item[0])] for item in result]
+        print(normalized)
+        years = []
+        cas = []
 
+        for item in normalized:
+            years.append(str(item[0]))
+            cas.append(int(item[1]))
+
+        print('years', years)
+        print('cas', cas)
+        return [years, cas]
+        
+
+print(query.getCAPerYear())
+
+# import numpy as np
+# print(np.random.randn(20, 3))
