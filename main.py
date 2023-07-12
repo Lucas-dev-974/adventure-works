@@ -1,13 +1,9 @@
 import streamlit as st
-import matplotlib.pyplot as plt
-import pandas as pd
 from database import query
+import plotly.express as px
 
-ca_years = query.getCAPerYear() 
+years, cas = query.getCAPerYear() 
 
-fig, ax = plt.subplots()
-ax.bar(ca_years[0], ca_years[1])
+fig = px.bar(y=cas, x=years)
 
-ax.set_title('Chiffre d\'affaire par années')
-ax.ticklabel_format(style='plain', axis="y")
-st.pyplot(fig)
+st.plotly_chart(fig)
