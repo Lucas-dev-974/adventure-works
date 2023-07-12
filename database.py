@@ -1,5 +1,6 @@
 import pyodbc 
 import pandas as pd
+import os
 
 # server = 'localhost'
 # database = 'AdventureWorksDW' 
@@ -8,8 +9,10 @@ import pandas as pd
 
 server = '20.4.206.214'
 database = 'AdventureWorksDW2019' 
-username = 'sa' 
-password = 'yourStrong_Password' 
+# username = 'sa' 
+username = os.environ["DATABASE_USERNAME"]
+# password = 'yourStrong_Password' 
+password = os.environ["DATABASE_PASSWORD"]
 
 def HandleHierarchyId(v):
     return str(v)
