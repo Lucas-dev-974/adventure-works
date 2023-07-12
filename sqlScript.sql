@@ -67,12 +67,3 @@ FROM
 ORDER BY
     jobtitle;
 
-SELECT
-    SUM(UnitPrice) AS Sales,
-    YEAR(OrderDate) as YearOfSale
-FROM
-    AdventureWorksDW2019.dbo.FactInternetSales
-GROUP BY
-    YEAR(OrderDate)
-ORDER by
-    YearOfSale
