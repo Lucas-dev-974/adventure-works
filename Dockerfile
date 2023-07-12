@@ -30,10 +30,6 @@ RUN ACCEPT_EULA=Y apt-get install -y msodbcsql18
 RUN git clone https://github.com/Lucas-dev-974/adventure-works.git .
 
 RUN pip3 install -r requirements.txt
-# Installation du pilote ODBC
-RUN apt-get update && apt-get install -y \
-    odbcinst \
-    && rm -rf /var/lib/apt/lists/*
 
 EXPOSE 8501
 

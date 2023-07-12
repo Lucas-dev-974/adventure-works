@@ -1,11 +1,11 @@
 import streamlit as st
 import plotly.express as px
+from database import query
 
 st.text('ok')
-# from database import query
 
-# years, cas = query.getCAPerYear() 
+years, cas = query.getCAPerYear() 
 
-# fig = px.bar(y=cas, x=years)
+fig = px.bar(y=cas, x=years)
 
-# st.plotly_chart(fig)
+st.plotly_chart(fig)
