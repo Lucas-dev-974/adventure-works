@@ -114,3 +114,25 @@ class query:
 
         return department, numberEmployee, cost
     
+    def getResselersCA():
+        result = executeSelect('''
+            SELECT
+                ResellerKey,
+                SUM(SalesAmount) AS TotalAmount
+            FROM
+                FactResellerSales
+            GROUP BY
+                ResellerKey
+            ORDER BY
+                ResellerKey
+        ''')
+        normalized = [[item[0], float(item[1])] for item in result]
+
+        resellers = []
+        amountCA = []
+
+        for item in normalized:
+            resellers.append(item[0])
+            amountCA.append(item[1])
+
+        return resellers, amountCA

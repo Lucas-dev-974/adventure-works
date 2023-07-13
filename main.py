@@ -39,3 +39,12 @@ years, cas = query.getCAPerYear()
 TurnOverFig = px.bar(y=cas, x=years)
 tab2.plotly_chart(TurnOverFig)
 
+sellersKey, sellerCas = query.getResselersCA()
+
+resellersCas = pd.DataFrame({
+    "Revendeur": sellersKey,
+    "Chiffre d'affaire": sellerCas
+})
+
+fig = px.pie(resellersCas, values="Chiffre d'affaire", names="Revendeur")
+st.plotly_chart(fig)
