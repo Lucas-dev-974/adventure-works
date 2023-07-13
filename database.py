@@ -114,17 +114,12 @@ class query:
 
         return department, numberEmployee, cost
     
-    def getResselersCA():
+    def getAllResselersCA():
         result = executeSelect('''
             SELECT
-                ResellerKey,
                 SUM(SalesAmount) AS TotalAmount
             FROM
                 FactResellerSales
-            GROUP BY
-                ResellerKey
-            ORDER BY
-                ResellerKey
         ''')
         normalized = [[item[0], float(item[1])] for item in result]
 
@@ -149,6 +144,15 @@ class query:
                 dimTerr.SalesTerritoryCountry
         ''')
 
-        return result
+        normalized = [[item[0], float(item[1])] for item in result]
+
+        countries = []
+        cas = []
+
+        for item in normalized:
+            countries.append(item[0])
+            cas.append(item[1])
+
+        return countries, cas
     
 print(query.getCAsCountries())
