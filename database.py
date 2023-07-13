@@ -3,6 +3,8 @@ import pandas as pd
 import os
 from dotenv import load_dotenv
 
+load_dotenv()
+
 # server = 'localhost'
 # database = 'AdventureWorksDW' 
 # username = 'sa' 
@@ -15,7 +17,7 @@ database = 'AdventureWorksDW2019'
 username = str(os.getenv("DATABASE_USERNAME"))
 # password = 'yourStrong_Password' 
 # password = os.environ["DATABASE_PASSWORD"]
-password = str(os.getenv("DATABASE_PASSWORD"))
+password = str(os.getenv("DATABASE_USERNAME"))
 
 def HandleHierarchyId(v):
     return str(v)
