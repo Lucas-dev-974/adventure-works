@@ -136,3 +136,19 @@ class query:
             amountCA.append(item[1])
 
         return resellers, amountCA
+
+    def getCAsCountries():
+        result = executeSelect(''' 
+            SELECT
+                dimTerr.SalesTerritoryCountry,
+                SUM(factWebSales.UnitPrice) as CAcountry
+            FROM
+                FactInternetSales as factWebSales
+                INNER JOIN DimSalesTerritory as dimTerr ON factWebSales.SalesTerritoryKey = dimTerr.SalesTerritoryKey
+            GROUP BY
+                dimTerr.SalesTerritoryCountry
+        ''')
+
+        return result
+    
+print(query.getCAsCountries())
