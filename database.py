@@ -1,6 +1,7 @@
 import pyodbc 
 import pandas as pd
 import os
+from dotenv import load_dotenv
 
 # server = 'localhost'
 # database = 'AdventureWorksDW' 
@@ -10,9 +11,11 @@ import os
 server = '20.4.206.214'
 database = 'AdventureWorksDW2019' 
 # username = 'sa' 
-username = os.environ["DATABASE_USERNAME"]
+# username = os.environ["DATABASE_USERNAME"]
+username = str(os.getenv("DATABASE_USERNAME"))
 # password = 'yourStrong_Password' 
-password = os.environ["DATABASE_PASSWORD"]
+# password = os.environ["DATABASE_PASSWORD"]
+password = str(os.getenv("DATABASE_PASSWORD"))
 
 def HandleHierarchyId(v):
     return str(v)
