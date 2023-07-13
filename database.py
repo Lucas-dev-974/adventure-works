@@ -17,7 +17,7 @@ database = 'AdventureWorksDW2019'
 username = str(os.getenv("DATABASE_USERNAME"))
 # password = 'yourStrong_Password' 
 # password = os.environ["DATABASE_PASSWORD"]
-password = str(os.getenv("DATABASE_USERNAME"))
+password = str(os.getenv("DATABASE_PASSWORD"))
 
 def HandleHierarchyId(v):
     return str(v)
