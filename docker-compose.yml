@@ -1,0 +1,9 @@
+services:
+  app:
+    image: maillotcedric/adventure-works
+    ports:
+      - 127.0.0.1:8501:8501
+    working_dir: /app
+    environment:
+      DATABASE_USERNAME: sa
+      DATABASE_PASSWORD: yourStrong_Password
