@@ -155,12 +155,11 @@ SELECT SalesOrderID, ProductID, OrderQty
 WHERE SalesOrderID IN(43659,43664);
 -- ---------------------------
 SELECT SalesOrderID AS OrderNumber, ProductID,
-    OrderQty AS Quantity,
-    SUM(OrderQty) OVER (ORDER BY SalesOrderID, ProductID) AS Total,
+	SUM(OrderQty) OVER (ORDER BY SalesOrderID, ProductID) AS Total,
     AVG(OrderQty) OVER(PARTITION BY SalesOrderID ORDER BY SalesOrderID, ProductID) AS Avg,
     COUNT(OrderQty) OVER(ORDER BY SalesOrderID, ProductID ROWS BETWEEN UNBOUNDED PRECEDING AND 1 FOLLOWING) AS Count
-FROM Sales.SalesOrderDetail
-WHERE SalesOrderID IN(43659,43664) and CAST(ProductID AS TEXT) LIKE '71%';
+	FROM Sales.SalesOrderDetail
+	WHERE SalesOrderID IN(43659,43664) AND ProductID LIKE '71%'
 -- ---------------------------
 SELECT SalesOrderID, SUM(orderqty*unitprice) AS OrderIDCost  
 FROM Sales.SalesOrderDetail  
