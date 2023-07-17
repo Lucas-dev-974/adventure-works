@@ -7,9 +7,9 @@ import pandas as pd
 
 
 def showDepartmentsAndCost():
-    st.title('Département & coût')
+    st.title('Départements')
     department, numberEmployee, cost = query.getEmployeePerDepartmentAndTheyCost()
-    data = {"Departement": department, "Nombre employer": numberEmployee, "Coût": cost}
+    data = {"Département": department, "Nombre d'employés": numberEmployee, "Coût de fonctionnement": cost}
     st.table(pd.DataFrame(data=data))
 
 def showSalesPerCountry(tab):
@@ -23,7 +23,7 @@ def showSalesPerCountry(tab):
     )]
 
     layout = go.Layout(
-        title = 'Sales by Country',
+        # title = 'Sales by Country',
         geo = dict(
             showframe = False,
             projection = {'type':'natural earth'}
@@ -58,11 +58,11 @@ def showPieCasCountries(tab):
 # st.plotly_chart(fig)
 
 def showTabs():
-    st.title('Graphiques')
+    st.title('Graphiques divers')
 
     tab1, tab2, tab3 = st.tabs(["Ventes par régions", 
-                                "📈 Chiffre d'affaire par années", 
-                                "Chiffre d'affaire par pei"])
+                                "📈 Chiffre d'affaire par année", 
+                                "Chiffre d'affaire par pays"])
                                 
     showSalesPerCountry(tab1)
     showCAPerYear(tab2)
