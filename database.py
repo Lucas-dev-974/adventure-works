@@ -95,7 +95,7 @@ class query:
             SELECT
                 departGroup.DepartmentGroupName,
                 COUNT(departGroup.DepartmentGroupName) as nbtotal, 
-                               SUM(FactFinance.Amount) as amount
+                               ROUND(SUM(FactFinance.Amount), 0) as amount
             FROM
                 FactFinance AS factfinance
                 INNER JOIN Dimdepartmentgroup AS departGroup 
