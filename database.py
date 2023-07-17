@@ -10,7 +10,7 @@ load_dotenv()
 # username = 'sa' 
 # password = 'system#root' 
 
-server = '20.4.206.214'
+server = '20.73.214.165'
 database = 'AdventureWorksDW2019' 
 # username = 'sa' 
 # username = os.environ["DATABASE_USERNAME"]
