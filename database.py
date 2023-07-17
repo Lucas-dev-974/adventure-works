@@ -106,7 +106,7 @@ class query:
                 nbtotal DESC
         ''')
         
-        normalized = [[item[0], int(item[1]), float(item[2])] for item in result]
+        normalized = [[item[0], int(item[1]), int(item[2])] for item in result]
        
         department = []
         numberEmployee = []
